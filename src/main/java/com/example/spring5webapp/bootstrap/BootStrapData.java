@@ -40,8 +40,12 @@ public class BootStrapData implements CommandLineRunner {
         authorRepository.save(rod);
         bookRepository.save(noEJB);
 
-        Publisher maniac = new Publisher("maniac", "The street 2", "Dondon", "Small state", "1515");
-        publisherRepository.save(maniac);
+        Publisher publisher = new Publisher();
+        publisher.setName("maniac");
+        publisher.setCity("Dondon");
+        publisher.setState("NewState");
+
+        publisherRepository.save(publisher);
 
         System.out.println("Started in Bootstrap");
         System.out.println("Number of Books: " + bookRepository.count());
