@@ -2,8 +2,10 @@ package com.example.spring5webapp.bootstrap;
 
 import com.example.spring5webapp.domain.Author;
 import com.example.spring5webapp.domain.Book;
+import com.example.spring5webapp.domain.Publisher;
 import com.example.spring5webapp.repositories.AuthorRepository;
 import com.example.spring5webapp.repositories.BookRepository;
+import com.example.spring5webapp.repositories.PublisherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +14,11 @@ public class BootStrapData implements CommandLineRunner {
 
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
-
-    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository) {
+    private final PublisherRepository publisherRepository;
+    public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
+        this.publisherRepository = publisherRepository;
     }
 
     @Override
@@ -37,7 +40,11 @@ public class BootStrapData implements CommandLineRunner {
         authorRepository.save(rod);
         bookRepository.save(noEJB);
 
+        Publisher maniac = new Publisher("maniac", "The street 2", "Dondon", "Small state", "1515");
+        publisherRepository.save(maniac);
+
         System.out.println("Started in Bootstrap");
         System.out.println("Number of Books: " + bookRepository.count());
+        System.out.println("If number here, we have pooblisher: " + publisherRepository.count());
     }
 }
